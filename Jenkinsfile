@@ -29,7 +29,7 @@ pipeline {
             steps {
                 script {
                 // builds the Docker image
-                docker.build("${DOCKER_IMAGE}:${BUILD_NUMBER}")
+                docker.build("${DOCKER_IMAGE}")
                 }
             }
         }
@@ -38,7 +38,7 @@ pipeline {
             steps {
                 script {
                     docker.withRegistry('https://hub.docker.com/repository/docker/johnsappdev/midterm_pipeline_johnsapp/general', 'docker-credentials') {
-                        docker.image("${DOCKER_IMAGE}:${BUILD_NUMBER}").push()
+                        docker.image("${DOCKER_IMAGE}").push()
                         }
                 }
             }

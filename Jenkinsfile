@@ -14,8 +14,12 @@ pipeline {
             }
         }
 
+
+
         stage('Build program'){
             steps {
+                // Make mvnw executable
+                sh 'chmod +x mvnw'
                 // builds teh java program using maven
                 sh './mvnw clean install'
             }

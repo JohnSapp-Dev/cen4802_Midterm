@@ -2,7 +2,7 @@ pipeline {
     agent any
 
     environment {
-        DOCKER_IMAGE = 'Midterm_Pipeline_John_Sapp'
+        DOCKER_IMAGE = 'midterm_pipeline_john_sapp'
         DOCKER_REGISTRY = 'johnsappdev/midterm_pipeline_johnsapp'
     }
 

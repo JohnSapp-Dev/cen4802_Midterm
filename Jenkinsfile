@@ -10,7 +10,7 @@ pipeline {
         stage('Git pull') {
             steps {
                 // pulls the code from the github repo
-                git branch: 'main', url: 'https://github.com/JohnSapp-Dev/cen4802_Midterm'
+                git branch: 'master', url: 'https://github.com/JohnSapp-Dev/cen4802_Midterm'
             }
         }
 

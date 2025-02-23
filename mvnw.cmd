@@ -15,9 +15,9 @@
 @REM "AS IS" BASIS, WITHOUT WARRANTIES OR CONDITIONS OF ANY
 @REM KIND, either express or implied.  See the License for the
 @REM specific language governing permissions and limitations
-@REM under the License.
+@REM under the License. blah
 @REM ----------------------------------------------------------------------------
-
+@REM dgfgdfg
 @REM ----------------------------------------------------------------------------
 @REM Apache Maven Wrapper startup batch script, version 3.3.2
 @REM
@@ -147,3 +147,5 @@ try {
 }
 
 Write-Output "MVN_CMD=$MAVEN_HOME/bin/$MVN_CMD"
+
+

@@ -14,7 +14,7 @@ RUN chmod +x mvnw
 RUN ls -al /app
 
 # Run Maven dependencies offline and build the project
-RUN ./mvnw dependency:go-offline
+#RUN ./mvnw dependency:go-offline
 RUN ./mvnw clean install -DskipTests
 
 # Copy the source code

@@ -1,18 +1,10 @@
-/*
 pipeline {
-    agent {
-        docker {
-            image "maven:3.9.9-jdk-17"
-            label "docker"
-        }
-    }
+    agent any
     environment {
         DOCKER_IMAGE = 'midterm_pipeline_john_sapp'
         DOCKER_REGISTRY = 'johnsappdev/midterm_pipeline_johnsapp'
     }
-    tools {
-        maven "3.9.9"
-    }
+
     stages {
         stage('Git pull') {
             steps {
@@ -51,29 +43,6 @@ pipeline {
             cleanWs()
         }
     }
-} */
-
-pipeline {
-    agent {
-        docker {
-            image "maven:3.9.9-jkd-17"
-
-        }
-    }
-
-    stages {
-        stage("build") {
-            steps {
-                sh "mvn -version"
-                sh "mvn clean install"
-            }
-        }
-    }
-
-    post {
-        always {
-            cleanWs()
-        }
-    }
-
 }
+
+

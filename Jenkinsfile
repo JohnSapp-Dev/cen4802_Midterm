@@ -5,7 +5,7 @@ pipeline {
         DOCKER_REGISTRY = 'johnsappdev/midterm_pipeline_johnsapp'
     }
     tools {
-        maven "maven3.9.9"
+        maven "3.9.9"
     }
     stages {
         stage('Git pull') {

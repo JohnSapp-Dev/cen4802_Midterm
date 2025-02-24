@@ -1,11 +1,12 @@
 pipeline {
     agent any
-
     environment {
         DOCKER_IMAGE = 'midterm_pipeline_john_sapp'
         DOCKER_REGISTRY = 'johnsappdev/midterm_pipeline_johnsapp'
     }
-
+    tools {
+        maven "maven3.9.9"
+    }
     stages {
         stage('Git pull') {
             steps {
@@ -13,7 +14,6 @@ pipeline {
                 git branch: 'master', url: 'https://github.com/JohnSapp-Dev/cen4802_Midterm'
             }
         }
-
         stage('Build program'){
             steps {
                 // Make mvnw executable
@@ -22,7 +22,6 @@ pipeline {
                 sh './mvnw clean install'
             }
         }
-
         stage('Build Docker Image') {
             steps {
                 script {
@@ -31,7 +30,6 @@ pipeline {
                 }
             }
         }
-
         stage('Push Docker Image') {
             steps {
                 script {
@@ -42,7 +40,6 @@ pipeline {
             }
         }
     }
-
     post {
         always {
             cleanWs()

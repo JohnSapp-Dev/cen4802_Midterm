@@ -57,7 +57,7 @@ pipeline {
     agent {
         docker {
             image "maven:3.9.9-jkd-17"
-            label "docker"
+
         }
     }
 

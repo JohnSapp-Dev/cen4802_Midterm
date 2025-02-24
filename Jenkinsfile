@@ -1,5 +1,10 @@
 pipeline {
-    agent any
+    agent {
+        docker {
+            image "maven:3.9.9-jdk-17"
+            label "docker"
+        }
+    }
     environment {
         DOCKER_IMAGE = 'midterm_pipeline_john_sapp'
         DOCKER_REGISTRY = 'johnsappdev/midterm_pipeline_johnsapp'

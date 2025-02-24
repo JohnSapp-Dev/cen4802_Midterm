@@ -30,7 +30,9 @@ pipeline {
                     // Get the path to the generated JAR file
                     def jarFile = sh(script: "ls target/*.jar", returnStdout: true).trim()
                     env.JAR_FILE_PATH = jarFile
-                    echo jarFile
+                    echo "JAR file: ${env.JAR_FILE_PATH}"
+
+                    // Make sure mvnw is executable in Jenkins
                     sh 'chmod +x mvnw'
 
                     // Dynamically create the Dockerfile for building the image

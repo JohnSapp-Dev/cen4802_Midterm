@@ -18,4 +18,4 @@ RUN ./mvnw clean install -DskipTests
 COPY src ./src
 
 # Set the default command to run the app
-CMD ["java", "-jar", "/app/target/simple-calculator2-1.0.0.jar"]
+CMD ["java", "-jar", "/opt/app/*.jar"]

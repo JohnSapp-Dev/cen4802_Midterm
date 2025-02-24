@@ -24,11 +24,11 @@ pipeline {
             }
         }
 
-        stage('Create Dockerfile') {
+       /*  stage('Create Dockerfile') {
             steps {
                 script {
                     // Get the path to the generated JAR file
-                    //def jarFile = sh(script: "ls target/*.jar", returnStdout: true).trim()
+                    //def jarFile = sh(script: "ls target *//*.jar", returnStdout: true).trim()
                     //env.JAR_FILE_PATH = jarFile
                     //echo "JAR file: ${env.JAR_FILE_PATH}"
 
@@ -49,7 +49,7 @@ pipeline {
                     """
                 }
             }
-        }
+        } */
 
 
         stage('Build Docker Image') {

@@ -1,3 +1,4 @@
+/*
 pipeline {
     agent {
         docker {
@@ -50,4 +51,29 @@ pipeline {
             cleanWs()
         }
     }
+} */
+
+pipeline {
+    agent {
+        docker {
+            image "maven:3.9.9-jkd-17"
+            label "docker"
+        }
+    }
+
+    stages {
+        stage("build") {
+            steps {
+                sh "mvn -version"
+                sh "mvn clean install"
+            }
+        }
+    }
+
+    post {
+        always {
+            cleanWs()
+        }
+    }
+
 }

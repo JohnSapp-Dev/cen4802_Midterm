@@ -19,7 +19,7 @@ pipeline {
             steps {
                 // Make mvnw executable
                 sh 'chmod +x mvnw'
-                // builds teh java program using maven
+                // builds the java program using maven
                 sh './mvnw clean install'
             }
         }
@@ -31,6 +31,7 @@ pipeline {
                     def jarFile = sh(script: "ls target/*.jar", returnStdout: true).trim()
                     env.JAR_FILE_PATH = jarFile
                     echo jarFile
+                    sh 'chmod +x mvnw'
 
                     // Dynamically create the Dockerfile for building the image
                     writeFile file: 'Dockerfile', text: """

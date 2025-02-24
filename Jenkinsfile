@@ -14,7 +14,6 @@ pipeline {
             }
         }
 
-
         stage('Build program'){
             steps {
                 // Make mvnw executable
@@ -24,39 +23,11 @@ pipeline {
             }
         }
 
-       /*  stage('Create Dockerfile') {
-            steps {
-                script {
-                    // Get the path to the generated JAR file
-                    //def jarFile = sh(script: "ls target *//*.jar", returnStdout: true).trim()
-                    //env.JAR_FILE_PATH = jarFile
-                    //echo "JAR file: ${env.JAR_FILE_PATH}"
-
-                    // Make sure mvnw is executable in Jenkins
-                    sh 'chmod +x mvnw'
-
-                    // Dynamically create the Dockerfile for building the image
-                    writeFile file: 'Dockerfile', text: """
-                    FROM openjdk:17-jdk-slim
-                    WORKDIR /app
-                    COPY mvnw ./
-                    COPY .mvn .mvn
-                    COPY pom.xml ./
-                    RUN chmod +x mvnw && ./mvnw clean install -DskipTests
-                    COPY src ./src
-                    RUN ./mvnw clean install -DskipTests
-                    CMD ["java", "-jar", "/app/target/simple-calculator2-1.0.0.jar"]
-                    """
-                }
-            }
-        } */
-
-
         stage('Build Docker Image') {
             steps {
                 script {
                 // builds the Docker image
-                docker.build("${DOCKER_IMAGE}")
+                docker.build("${DOCKER_IMAGE}",".")
                 }
             }
         }

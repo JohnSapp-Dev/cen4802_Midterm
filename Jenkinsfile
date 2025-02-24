@@ -28,9 +28,9 @@ pipeline {
             steps {
                 script {
                     // Get the path to the generated JAR file
-                    def jarFile = sh(script: "ls target/*.jar", returnStdout: true).trim()
-                    env.JAR_FILE_PATH = jarFile
-                    echo "JAR file: ${env.JAR_FILE_PATH}"
+                    //def jarFile = sh(script: "ls target/*.jar", returnStdout: true).trim()
+                    //env.JAR_FILE_PATH = jarFile
+                    //echo "JAR file: ${env.JAR_FILE_PATH}"
 
                     // Make sure mvnw is executable in Jenkins
                     sh 'chmod +x mvnw'
@@ -45,7 +45,7 @@ pipeline {
                     RUN chmod +x mvnw && ./mvnw dependency:go-offline
                     COPY src ./src
                     RUN ./mvnw clean install -DskipTests
-                    CMD ["java", "-jar", "/app/${env.JAR_FILE_PATH}"]
+                    CMD ["java", "-jar", "/app/target/simple-calculator2-1.0.0.jar"]
                     """
                 }
             }

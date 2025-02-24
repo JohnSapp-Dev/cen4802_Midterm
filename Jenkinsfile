@@ -42,7 +42,7 @@ pipeline {
                     COPY mvnw ./
                     COPY .mvn .mvn
                     COPY pom.xml ./
-                    RUN chmod +x mvnw && ./mvnw dependency:go-offline
+                    RUN chmod +x mvnw
                     COPY src ./src
                     RUN ./mvnw clean install -DskipTests
                     CMD ["java", "-jar", "/app/target/simple-calculator2-1.0.0.jar"]

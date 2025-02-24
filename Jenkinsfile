@@ -25,26 +25,28 @@ pipeline {
         }
 
         stage('Create Dockerfile') {
-             steps {
-                 script {
-                     def jarFile = sh(script: "ls target/*.jar", returnStdout: true).trim()
-                     env.JAR_FILE_PATH = jarFile
+            steps {
+                script {
+                    // Get the path to the generated JAR file
+                    def jarFile = sh(script: "ls target/*.jar", returnStdout: true).trim()
+                    env.JAR_FILE_PATH = jarFile
 
-                     // Dynamically create the Dockerfile for building the image
-                     writeFile file: 'Dockerfile', text: '''
-                     FROM openjdk:17-jdk-slim
-                     WORKDIR /app
-                     COPY mvnw ./
-                     COPY .mvn .mvn
-                     COPY pom.xml ./
-                     RUN chmod +x mvnw && ./mvnw dependency:go-offline
-                     COPY src ./src
-                     RUN ./mvnw clean install -DskipTests
-                     CMD ["java", "-jar", "/app/${env.JAR_FILE_PATH}"]
-                     '''
-                        }
-                    }
+                    // Dynamically create the Dockerfile for building the image
+                    writeFile file: 'Dockerfile', text: """
+                    FROM openjdk:17-jdk-slim
+                    WORKDIR /app
+                    COPY mvnw ./
+                    COPY .mvn .mvn
+                    COPY pom.xml ./
+                    RUN chmod +x mvnw && ./mvnw dependency:go-offline
+                    COPY src ./src
+                    RUN ./mvnw clean install -DskipTests
+                    CMD ["java", "-jar", "/app/${env.JAR_FILE_PATH}"]
+                    """
                 }
+            }
+        }
+
 
         stage('Build Docker Image') {
             steps {
